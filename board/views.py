@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
 
 # Create your views here.
 def index(request):
@@ -63,3 +63,12 @@ def delete(request, post_id):
     post = Post.objects.all().get(id=post_id)
     post.delete()
     return redirect('/board/')
+    
+
+def comment_create(request, post_id):
+    post = Post.objects.get(id=post_id)
+    content = request.GET.get('content')
+
+    comment = Comment(content=content, post=post)
+    comment.save()
+    return redirect(f'/board/detail/{post_id}/')

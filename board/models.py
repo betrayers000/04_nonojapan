@@ -10,3 +10,9 @@ class Post(models.Model):
     
     def replace_list(self):
         return self.replace.split(',')
+
+
+
+class Comment(models.Model):
+    content = models.CharField(max_length=150)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
