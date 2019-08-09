@@ -11,22 +11,20 @@
   <a class="btn btn-primary btn-lg" href="/board/delete/{{post.id}}" role="button">삭제</a>
 </div>
 <div class="contianer">
-  <form action="/board/{{post.id}}/comment/create/" class="my-3">
-    <input type="text" class="px-5" name=content>
-    <input type="submit" value="추가">
+  <form action="/board/{{post.id}}/comment/create/" class="form-group my-3 d-flex justify-content-between">
+    <input type="text" class="form-control col-11" name=content>
+    <input type="submit" class="btn btn-outline-primary" value="추가">
   </form>
 </div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">No.</th>
       <th scope="col">Comment</th>
     </tr>
   </thead>
   <tbody>
     {% for comment in post.comment_set.all %}
     <tr>
-      <th scope="row">{{comment.id}}</th>
       <td>{{comment.content}}</td>
     </tr>
     {% endfor %}
